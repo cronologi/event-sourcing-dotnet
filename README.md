@@ -27,12 +27,15 @@ You can then open your browser to:
 
 ## How to Develop Your Own Application
 
-1. To use your own aggregates, events, commands, queries, projections, reactions, and endpoints you will need 
-to change the code in `Domain/`.
-2. To register any services you add (controllers, repositories, etc.) you will need to change the container definition
-code in `Program.cs`.
-3. If you added new events, you need to update the `Serializer` and `Deserializer` classes in 
-`Common/SerializedEvent`.
+Assuming you know event sourcing theory, developing on this application will feel very natural. Otherwise, don't worry - Ambar offers a **free** 1 day Event Sourcing course [here](https://ambar.cloud/event-sourcing-one-day-course). 
+
+To get a quick understanding of how this application works, please read the domain code in `Domain/`, the abstractions provided in `Common/`, and the README files also in `Common/`. With that reading done, here's a full picture:
+
+1. `Domain/`: where you define aggregates, events, commands, queries, projections, and reactions. You will spend most of your time here.
+2. `Common/`: a set of event sourcing abstractions. You will rarely need to edit files here, except for having to update the `Serializer` and `Deserializer` classes in `Common/SerializedEvent/` whenever you add or remove events.
+3. `Program.cs`: contains the application's startup file as well as configuration of your dependency inection container. You will need to edit this file to register or unregister services as you see fit (controllers, repositories, etc.). 
+
+When developing your application for the fist time, we recommend you keep the Cooking Club Membership code as an example you can quickly navigate to. Once you have implemented several commands, queries, projections, and reactions, delete the Cooking Club Membership code. This will require you to delete its code in `Domain`, serialization logic in `Common/serializedEvent`, and relevant services in `Program.cs`.
 
 ## Additional Scripts
 
@@ -54,8 +57,6 @@ and deploy it to your cloud provider. We have provided infrastructure starter pa
 
 ## Support
 
-We have provided some documentation to help get you started with event sourcing in the `docs` folder in the root of this repo.
-
-If you get stuck, please feel free to ask questions in the #event-sourcing channel of our [Slack community](https://www.launchpass.com/ambar). We also offer a **free** 1 day Event Sourcing course discussing theory, patterns, infrastructure, and best practices. Register and learn more [here](https://ambar.cloud/event-sourcing-one-day-course).
+If you get stuck, please feel free to ask questions in the #event-sourcing channel of our [Slack community](https://www.launchpass.com/ambar). 
 Or if you need further help like a free private walkthrough, simply book one [here](https://calendly.com/luis-ambar).
 
